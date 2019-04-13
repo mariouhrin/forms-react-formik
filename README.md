@@ -1,4 +1,4 @@
-## Testing forms with formik and react
+# Testing forms using formik library and react
 
 ## Run commands inside root directory
 
