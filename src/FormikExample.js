@@ -11,12 +11,14 @@ export function FormikExample() {
       initialValues={{ firstName: "", lastName: "", email: "" }}
       validateOnChange={false}
       validationSchema={validateSchema()}
-      onSubmit={(values, action) => {
-        console.log("actions", action);
-        console.log(values);
+      onSubmit={(values, { setSubmitting }) => {
+        setTimeout(() => {
+          alert(JSON.stringify(values, null, 2));
+          setSubmitting(false);
+        }, 500);
       }}
     >
-      {({ handleReset, errors, touched }) => (
+      {({ handleReset, errors, touched, isSubmitting, dirty }) => (
         <>
           <h2>Formik builtin with error component</h2>
           <Form className="form-wrapper">
@@ -32,8 +34,15 @@ export function FormikExample() {
               <InputField props={{ placeholder: "email", name: "email", errors, touched }} />
               <CustomErrorMessage name="email" />
             </div>
-            <button type="submit">Submit</button>
-            <button type="button" onClick={handleReset}>
+            <button type="submit" className="button-custom" disabled={isSubmitting}>
+              Submit
+            </button>
+            <button
+              type="button"
+              className="button-custom outline"
+              onClick={handleReset}
+              disabled={!dirty || isSubmitting}
+            >
               Reset
             </button>
           </Form>
