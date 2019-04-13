@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { FormikExample } from "./FormikError";
+import { FormikExample } from "./FormikExample";
 
 import "./App.css";
 
